@@ -3,11 +3,16 @@ import React, { useState, useEffect } from 'react';
 function TodoList() {
     const [tasks, setTasks] = useState([]);
     const [newTask, setNewTask] = useState("");
-    const [userNameGet, setUserNameGet] = useState("")
+    const [userNameGet, setUserNameGet] = useState("David")
 
     useEffect(() => {
 
+        fetchTasks()
+    }, []);
+
+    useEffect(() => {
         updateTasksOnServer(tasks);
+
     }, [tasks]);
 
     const fetchTasks = () => {
@@ -56,25 +61,27 @@ function TodoList() {
     };
 
     return (
-        <div>
-            <h1>Todo List</h1>
-            <div>
-                {/* <input type="text" value={userNameGet} onChange={(e)=> setUserNameGet(e.target.value)} placeholder='escribe el usuario para obtener tasks'/>
-            <button>Crear</button> hacer algo como los botones de la 161 y 162 */}
+        <div className="card mt-4" style={{ width: "18rem;" }} >
+            <div className='row d-flex justify-content-center'>
+
+                <div className='col-lg-12 d-flex justify-content-center'>
+                    <h1>Todo List</h1>
+                </div>
+                <div className='col-lg-12 d-flex justify-content-center'>
+                    <input type="text" value={newTask} onChange={handleInputChange} />
+                    <button onClick={addTask}>Agregar tarea</button>
+                    <button onClick={clearAllTasks}>Limpiar todas las tareas</button>
+                </div>
+                <div className='col-lg-12'>
+                    <ul>
+                        {tasks.map((task) => (
+                            <li className="d-flex justify-content-around" key={task.id}>
+                                {task.title}
+                                <button onClick={() => deleteTask(task.id)}> <i className="fa-solid fa-trash"></i> </button>
+                            </li>
+                        ))}
+                    </ul></div>
             </div>
-            <div>
-                <input type="text" value={newTask} onChange={handleInputChange} />
-                <button onClick={addTask}>Agregar tarea</button>
-                <button onClick={clearAllTasks}>Limpiar todas las tareas</button>
-            </div>
-            <ul>
-                {tasks.map((task) => (
-                    <li key={task.id}>
-                        {task.title}
-                        <button onClick={() => deleteTask(task.id)}>Eliminar</button>
-                    </li>
-                ))}
-            </ul>
         </div>
     );
 }
