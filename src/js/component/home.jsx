@@ -16,7 +16,7 @@ function TodoList() {
     }, [tasks]);
 
     const fetchTasks = () => {
-        fetch(`https://playground.4geeks.com/apis/fake/todos/user/${userNameGet}`)
+        fetch(`https://playground.4geeks.com/apis/fake/todos/user/DavidToDo`)
             .then((response) => response.json())
             .then((data) => {
                 setTasks(data);
@@ -49,7 +49,7 @@ function TodoList() {
     };
 
     const updateTasksOnServer = (newTasks) => {
-        fetch(`https://playground.4geeks.com/apis/fake/todos/user/${userNameGet}`, {
+        fetch(`https://playground.4geeks.com/apis/fake/todos/user/DavidToDo`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -77,7 +77,7 @@ function TodoList() {
                         {tasks.map((task) => (
                             <li className="d-flex justify-content-around" key={task.id}>
                                 {task.title}
-                                <button onClick={() => deleteTask(task.id)}> <i className="fa-solid fa-trash"></i> </button>
+                                <button onClick={() => deleteTask(task.id)}> <i className="fa-solid fa-trash"></i></button>
                             </li>
                         ))}
                     </ul></div>
