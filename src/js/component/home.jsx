@@ -16,7 +16,7 @@ function TodoList() {
     }, [tasks]);
 
     const fetchTasks = () => {
-        fetch(`https://playground.4geeks.com/apis/fake/todos/user/DavidToDo`)
+        fetch(`https://playground.4geeks.com/apis/fake/todos/user/DavidToDo-2`)
             .then((response) => response.json())
             .then((data) => {
                 setTasks(data);
@@ -49,7 +49,7 @@ function TodoList() {
     };
 
     const updateTasksOnServer = (newTasks) => {
-        fetch(`https://playground.4geeks.com/apis/fake/todos/user/DavidToDo`, {
+        fetch(`https://playground.4geeks.com/apis/fake/todos/user/DavidToDo-2`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
